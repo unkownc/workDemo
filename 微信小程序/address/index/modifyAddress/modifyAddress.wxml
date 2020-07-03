@@ -1,0 +1,60 @@
+<view class="addressModify">地址填写</view>
+<van-cell-group>
+  <van-field
+    value="{{ userinfo.username }}"
+    data-text="username"
+    required
+    clearable
+    label="姓名"
+    placeholder="请输入用户名" bind:change="modifyValue"
+  />
+  <van-field
+    value="{{ userinfo.phone }}"
+    data-text="phone"
+    required
+    clearable
+    label="手机号"
+    placeholder="请输入手机号" bind:change="modifyValue"
+  />
+  <van-field
+    value="{{ userinfo.address }}"
+    data-text="address"
+    required
+    clearable
+    label="所在地"
+    icon="location-o"
+    placeholder="XX省XX市XX区"
+    bind:click-icon="addAddr" bind:change="modifyValue"
+  />
+  <van-field
+    value="{{ userinfo.realAddress }}"
+    data-text="realAddress"
+    required
+    clearable
+    label="详细地址"
+    placeholder="请输入详细地址" bind:change="modifyValue"
+  />
+
+<van-cell center title="设置为默认">
+  <van-switch checked="{{ userinfo.status }}" data-text="status" active-color="rgb(67,175,160)"
+  bind:change="onChange" />
+</van-cell>
+
+</van-cell-group>
+
+ <view style="text-align:center">
+    <block wx:if="{{status=='add'}}">
+    <van-button round bindtap="addAddress" color="rgb(67,175,160)" custom-style="width:90%;margin:7px auto;" >
+      新增地址
+    </van-button>
+    </block>
+    <block wx:else>
+    <van-button round bindtap="modifyAddress" color="rgb(67,175,160)" custom-style="width:90%;margin:7px auto;" >
+      修改地址
+    </van-button>
+    </block>
+    <block wx:if="{{status!='add'}}">
+     <van-button round bindtap="delAddress" color="red" custom-style="width:90%;margin:7px auto;" >删除</van-button>
+    </block>
+     <!-- <button type="primary" style="width:90%;">按钮</button> -->
+ </view>

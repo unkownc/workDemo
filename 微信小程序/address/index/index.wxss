@@ -1,0 +1,21 @@
+.styleColor {
+  background: rgb(67，175，160);
+  color: #fff;
+}
+
+.textLeft {
+  margin-left: 10px;
+}
+
+.bottomBtn {
+  width: 100%;
+  height: 58px;
+  position: fixed;
+  bottom: 0;
+}
+
+.addressModify {
+  font-weight: blod;
+  font-size: 20px;
+  text-align: center;
+}
