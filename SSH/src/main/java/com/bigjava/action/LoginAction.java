@@ -1,6 +1,12 @@
 package com.bigjava.action;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
+import org.apache.struts2.ServletActionContext;
+
 import com.bigjava.dao.UserDAO;
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class LoginAction extends ActionSupport {
@@ -41,10 +47,32 @@ public class LoginAction extends ActionSupport {
 	}
 
 	public String login() {
-		System.out.println("execute-login>>>>");
-		System.out.println("password>>>" + password + " username>>>" + username);
-		userDAO.login(username, password);
-		return SUCCESS;
+		System.out.println("username>>>" + username + " password>>>" + password);
+		if (userDAO.login(username, password)) {
+
+			HttpSession session = getRequest().getSession();
+			session.setAttribute("user", username);
+
+			return SUCCESS;
+		}
+		return ERROR;
+	}
+
+	public void end() {
+		System.out.println("注销>>>");
+		HttpSession session = getRequest().getSession();
+		session.removeAttribute("user");
+	}
+
+	/**
+	 * 获取request方法
+	 * 
+	 * @return HttpServletRequest
+	 */
+	public HttpServletRequest getRequest() {
+		ActionContext ac = ActionContext.getContext();
+		HttpServletRequest request = (HttpServletRequest) ac.get(ServletActionContext.HTTP_REQUEST);
+		return request;
 	}
 
 }

@@ -2,6 +2,19 @@
 <!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 <struts>
 	<package name="default" extends="struts-default">
+
+		<interceptors>
+			<interceptor name="userSessionInterceptor"
+				class="com.bigjava.interceptor.UserSessionInterceptor" />
+			<interceptor-stack name="defaultInteceptorStack">
+				<interceptor-ref name="defaultStack" />
+				<interceptor-ref name="userSessionInterceptor" />
+			</interceptor-stack>
+		</interceptors>
+
+		<default-interceptor-ref
+			name="defaultInteceptorStack" />
+
 		<action name="login_*" method="{1}" class="loginAction">
 			<result name="success">/index.jsp</result>
 			<result name="error">/login.jsp</result>

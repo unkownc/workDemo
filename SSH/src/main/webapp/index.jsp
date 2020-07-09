@@ -1,8 +1,9 @@
-<%@ page language="java" import="java.util.*" pageEncoding="ISO-8859-1"%>
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
@@ -21,6 +22,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-    This is my JSP page. <br>
+   	<c:choose>
+   		<c:when test="${empty sessionScope.user }">
+    	请登陆,<a href="login.jsp">登陆</a>   		
+   		</c:when>
+   		<c:otherwise>
+   			欢迎${sessionScope.user }登陆,<a href="login_end">注销</a>
+   		</c:otherwise>
+   	</c:choose>
   </body>
 </html>
