@@ -12,7 +12,7 @@
 		<webVersion>4.0</webVersion>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<hibernate.version></hibernate.version>
-		<spring.version>4.1.9.RELEASE</spring.version>
+		<spring.version>5.3.18</spring.version>
 	</properties>
 	<dependencies>
 		<!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
